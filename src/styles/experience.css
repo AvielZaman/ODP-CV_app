@@ -1,0 +1,29 @@
+.experienceEdit{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.inputDiv{
+    display: flex;
+    gap: 5px;
+}
+
+label{
+    text-transform: uppercase;
+    color: rgb(148, 147, 147);
+    font-weight: 500;
+}
+
+input{
+    padding: 5px;
+    border-radius: 5cm;
+}
+
+button{
+    border: 1px solid black;
+    border-radius: 5cm;
+    background-color: rgb(141, 140, 200);
+}

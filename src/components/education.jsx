@@ -30,8 +30,9 @@ function Education({ onSave }) {
 
     return (
 
-        <form className="education" onSubmit={handleSubmit}>
-            <h2> Enter your Education details :</h2>
+        <form className="educationEdit" onSubmit={handleSubmit}>
+            <legend> Enter your Education details :</legend>
+
             <label> School name:</label>
             <input type="text" name="schoolName" value={details.schoolName} onChange={handleChange} />
 

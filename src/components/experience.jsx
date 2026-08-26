@@ -32,8 +32,9 @@ function Experience({ onSave }) {
     }
 
     return (
-        <form className="experience" onSubmit={handleSubmit}>
-            <h2> Enter your practical experience :</h2>
+        <form className="experienceEdit" onSubmit={handleSubmit}>
+            <legend> Enter your practical experience :</legend>
+
             <label> Company name:</label>
             <input type="text" name="companyName" value={details.companyName} onChange={handleChange} />
 

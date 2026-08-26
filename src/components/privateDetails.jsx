@@ -18,7 +18,7 @@ function PrivateDetails({ onSave }) {
 
   if (!isEditing) {
     return (
-      <div className="details">
+      <div className="detailsSubmit">
         <h2>Your details</h2>
         <p><strong>{details.name}</strong></p>
         <p>{details.email}</p>
@@ -29,16 +29,24 @@ function PrivateDetails({ onSave }) {
   }
 
   return (
-    <form className="details" onSubmit={handleSubmit}>
-      <h2>Enter your details:</h2>
-      <label>Full Name*:</label>
-      <input required type="text" name="name" value={details.name} onChange={handleChange} />
+    <form className="detailsEdit" onSubmit={handleSubmit}>
+      <legend>Enter your details:</legend>
 
-      <label>Email*:</label>
-      <input required type="email" name="email" value={details.email} onChange={handleChange} />
+      <div className='inputDiv'>
+        <label>Full Name*:</label>
+        <input required type="text" name="name" value={details.name} onChange={handleChange} />
+      </div>
 
-      <label>Phone*:</label>
-      <input required type="tel" name="phone" value={details.phone} onChange={handleChange} />
+      <div className='inputDiv'>
+        <label>Email*:</label>
+        <input required type="email" name="email" value={details.email} onChange={handleChange} />
+      </div>
+
+      <div className='inputDiv'>
+        <label>Phone*:</label>
+        <input required type="tel" name="phone" value={details.phone} onChange={handleChange} />
+      </div>
+
 
       <button type="submit">Submit</button>
     </form>
