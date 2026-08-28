@@ -1,9 +1,11 @@
 .educationEdit{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
-    justify-content: space-between;
     padding: 20px;
+    background-color: var(--cards-background);
+    width: 50%;
+    border-radius: 0.3cm;
 }
 
 .inputDiv{
@@ -17,13 +19,41 @@ label{
     font-weight: 500;
 }
 
-input{
-    padding: 5px;
-    border-radius: 5cm;
+hr{
+    border: none;
+    height: 1px;
+    background-color: white;
+    margin-top: 10px 0; 
+    width: 30%;
 }
 
-button{
-    border: 1px solid black;
-    border-radius: 5cm;
-    background-color: rgb(141, 140, 200);
+/* after submiting */
+.education{
+    margin-top: 20px;
+}
+
+.heading {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: #e4e4e3;
+    text-align: center;
+    color: var(--btn-color);
+}
+
+.headers {
+    display: flex;
+    flex-direction: column;
+    line-height: 0.1;
+}
+
+.headers h2 {
+    color: black;
 }

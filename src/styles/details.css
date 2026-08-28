@@ -1,29 +1,35 @@
-.detailsEdit{
+.detailsEdit {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
-    justify-content: space-between;
     padding: 20px;
+    background-color: var(--cards-background);
+    width: 50%;
+    border-radius: 0.3cm;
 }
 
-.inputDiv{
+.inputDiv {
     display: flex;
+    flex-direction: column;
     gap: 5px;
+    flex: 1;
 }
 
-label{
+label {
     text-transform: uppercase;
     color: rgb(148, 147, 147);
     font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
-input{
-    padding: 5px;
-    border-radius: 5cm;
+.mail-phone {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex: 1;
 }
 
-button{
-    border: 1px solid black;
-    border-radius: 5cm;
-    background-color: rgb(141, 140, 200);
+input {
+    width: 100%;
 }

@@ -35,20 +35,30 @@ function Experience({ onSave }) {
         <form className="experienceEdit" onSubmit={handleSubmit}>
             <legend> Enter your practical experience :</legend>
 
-            <label> Company name:</label>
-            <input type="text" name="companyName" value={details.companyName} onChange={handleChange} />
+            <div className='inputDiv'>
+                <label> Company name:</label>
+                <input type="text" name="companyName" value={details.companyName} onChange={handleChange} />
+            </div>
 
-            <label> Position Title:</label>
-            <input type="text" name="position" value={details.position} onChange={handleChange} />
+            <div className='inputDiv'>
+                <label> Position Title:</label>
+                <input type="text" name="position" value={details.position} onChange={handleChange} />
+            </div>
 
-            <label> Main responsibilities:</label>
-            <input type="text" name="respons" value={details.respons} onChange={handleChange} />
+            <div className='inputDiv'>
+                <label> Main responsibilities:</label>
+                <input type="text" name="respons" value={details.respons} onChange={handleChange} />
+            </div>
 
-            <label> Start date:</label>
-            <input type="date" name="start" value={details.start} onChange={handleChange} />
+            <div className='inputDiv'>
+                <label> Start date:</label>
+                <input type="date" name="start" value={details.start} onChange={handleChange} />
+            </div>
 
-            <label> End date:</label>
-            <input type="date" name="end" value={details.end} onChange={handleChange} />
+            <div className='inputDiv'>
+                <label> End date:</label>
+                <input type="date" name="end" value={details.end} onChange={handleChange} />
+            </div>
 
             <button type="submit">Submit</button>
         </form>

@@ -30,25 +30,35 @@ function PrivateDetails({ onSave }) {
 
   return (
     <form className="detailsEdit" onSubmit={handleSubmit}>
-      <legend>Enter your details:</legend>
-
-      <div className='inputDiv'>
-        <label>Full Name*:</label>
-        <input required type="text" name="name" value={details.name} onChange={handleChange} />
+      <div className='heading'>
+        <span className='number'>1</span>
+        <div className='headers'>
+          <h2> General information</h2>
+          <p>How employers can reach you</p>
+        </div>
       </div>
 
       <div className='inputDiv'>
-        <label>Email*:</label>
-        <input required type="email" name="email" value={details.email} onChange={handleChange} />
+        <label>Full Name*</label>
+        <input required type="text" name="name" value={details.name} onChange={handleChange}
+          placeholder='John Doe' />
       </div>
 
-      <div className='inputDiv'>
-        <label>Phone*:</label>
-        <input required type="tel" name="phone" value={details.phone} onChange={handleChange} />
+      <div className='mail-phone'>
+        <div className='inputDiv'>
+          <label>Email*</label>
+          <input required type="email" name="email" value={details.email} onChange={handleChange}
+            placeholder='example@gmail.com' />
+        </div>
+
+        <div className='inputDiv'>
+          <label>Phone*</label>
+          <input required type="tel" name="phone" value={details.phone} onChange={handleChange}
+            placeholder='05X-XXXXXXX' />
+        </div>
       </div>
 
-
-      <button type="submit">Submit</button>
+      <button type="submit">Submit section</button>
     </form>
   );
 }
