@@ -1,67 +1,11 @@
-.educationEdit{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: var(--cards-background);
-    width: 50%;
-    border-radius: 0.3cm;
-}
+/*
+  Shared card/input/label/two-column styles now live once in
+  App.css (.form-card, .inputDiv, label, .two-col, .fields-group,
+  .form-divider) instead of being copy-pasted (and drifting) in
+  every component's own stylesheet.
 
-.inputDiv{
-    display: flex;
-    gap: 5px;
-}
-
-label{
-    text-transform: uppercase;
-    color: rgb(148, 147, 147);
-    font-weight: 500;
-}
-
-hr{
-    border: none;
-    height: 1px;
-    background-color: white;
-    margin-top: 10px 0; 
-    width: 30%;
-}
-
-/* after submiting */
-.education{
-    margin-top: 20px;
-}
-
-.heading {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.number {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid var(--border-color);
-    background: #e4e4e3;
-    text-align: center;
-    color: var(--btn-color);
-}
-
-.headers {
-    display: flex;
-    flex-direction: column;
-    line-height: 0.1;
-}
-
-.headers h2 {
-    color: black;
-}
-
-.degree-field,
-.dates {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    flex: 1;
-}
+  This file only keeps what is genuinely specific to the
+  Education section. (There's currently nothing left to add here -
+  it's kept so the existing `import '../styles/education.css'`
+  doesn't need to change.)
+*/

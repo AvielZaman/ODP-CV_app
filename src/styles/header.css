@@ -1,52 +1,57 @@
 .head {
-    background-color: var(--background-color);
-
+  background-color: var(--background-color);
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 20px 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px 5px 20px;
 }
 
 .left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 h1 {
-    font-size: 24px;
-    color: black;
+  font-size: 24px;
+  color: black;
 }
 
 #icon {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
 
 .statusRow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted, #9A968C);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-muted, #9A968C);
 }
 
 .statusDot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #D8D4C9;
-    display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D8D4C9;
+  display: inline-block;
 }
 
+/* This is the only place `hr` is styled now - it used to also be
+   redefined (differently, and with an invalid
+   "margin-top: 10px 0") in education.css, even though education.css
+   never actually rendered an <hr>. Two global `hr` rules fighting
+   over the one real <hr> (this one, in the page header) was fragile
+   and depended on import order. */
 hr {
-    width: 100%;
-    border: none;
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 0;
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 0;
 }

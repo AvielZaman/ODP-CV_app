@@ -25,34 +25,36 @@ body {
 
 h1,
 h2,
-h3{
+h3 {
   font-family: var(--font-heading);
 }
 
 .prolog {
   display: flex;
   flex-direction: column;
-  line-height: 0.01;
-  margin-bottom: 40px;
+  gap: 6px;
+  width: 50%;
+  margin-bottom: 10px;
 }
 
 .prolog h3 {
   color: var(--btn-color);
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
+  margin: 0;
 }
 
 .prolog h1 {
-  font-size: 36px;
+  font-size: 46px;
   font-weight: 500;
+  margin: 0;
 }
 
 .prolog p {
   font-weight: 500;
-}
-
-.description {
-  line-height: 0.5;
+  font-size: 17px;
+  line-height: 1.4;
+  margin: 2px 0;
 }
 
 .container {
@@ -63,7 +65,7 @@ h3{
   align-items: center;
   padding: 20px;
   color: var(--text-muted);
-  gap: 30px;
+  gap: 50px;
 }
 
 .cv-preview {
@@ -74,25 +76,209 @@ i {
   text-decoration: underline;
 }
 
-input {
+input:not([type="checkbox"]),
+textarea {
   border: 2px solid var(--border-color);
   padding: 15px;
   border-radius: 0.2cm;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--btn-color);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: normal;
+  color: var(--text-color);
+  margin-top: 4px;
 }
 
 button {
-    border: 1px solid black;
-    border-radius: 0.3cm;
-    background-color: var(--btn-color);
-    width: 22%;
-    align-self: flex-end;
-    cursor: pointer;
-    transition: background-color 1s ease-in;
-    color: white;
-    padding: 10px;
-    font-size: 20px;
+  border: 1px solid black;
+  border-radius: 0.3cm;
+  background-color: var(--btn-color);
+  width: auto;
+  white-space: nowrap;
+  align-self: flex-end;
+  cursor: pointer;
+  transition: background-color 1s ease-in;
+  color: white;
+  padding: 10px 24px;
+  font-size: 20px;
 }
 
 button:hover {
-    background-color: rgb(49, 74, 155);
+  background-color: rgb(49, 74, 155);
+}
+
+/* ============================================================
+   SHARED "form card" pattern (Education / Experience / Details)
+   ------------------------------------------------------------
+   Previously each component's own .css redefined .inputDiv,
+   label, hr, etc. with slightly different (and conflicting)
+   values. Because these are plain global stylesheets (no CSS
+   Modules), whichever file happened to load last silently won
+   for the WHOLE app, not just its own component - that's what
+   was breaking the layout and label styling everywhere.
+   These rules now live in exactly one place.
+   ============================================================ */
+
+.form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+  background-color: var(--cards-background);
+  width: 50%;
+  border-radius: 0.3cm;
+}
+
+.heading {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.number {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background: #e4e4e3;
+  color: var(--btn-color);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.headers {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.headers h2 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: black;
+  margin: 0;
+}
+
+.headers p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+label {
+  text-transform: uppercase;
+  color: rgb(148, 147, 147);
+  font-weight: 500;
+  /* was 14px */
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* Any row that lays two fields side by side: name/email,
+   degree/field of study, start/end date, company/position... */
+.two-col {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+/* The nested, slightly-recessed box the PDF uses to group one
+   repeatable entry (one school, one job) inside a card. */
+.fields-group {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.2cm;
+}
+
+.form-divider {
+  border: none;
+  height: 1px;
+  background-color: var(--border-color);
+  width: 100%;
+  margin: 0;
+}
+
+/* "+ Add another school / role" - a plain text-style link/button,
+   not the solid submit-button look, so it needs to override most
+   of the global `button` rule. */
+.add-entry-btn {
+  background: none;
+  border: none;
+  color: var(--btn-color);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0;
+  width: auto;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.add-entry-btn:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.entry-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.remove-entry-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 0;
+  width: auto;
+  align-self: auto;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.remove-entry-btn:hover {
+  background: none;
+  color: var(--btn-color);
+}
+
+/* Read-only "submitted" state for each section */
+.detailsSubmit,
+.education,
+.experience {
+  margin-top: 20px;
 }

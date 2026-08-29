@@ -1,33 +1,18 @@
-.experienceEdit{
-  display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: var(--cards-background);
-    width: 50%;
-    border-radius: 0.3cm;
-}
+/*
+  Shared card/input/label/two-column styles now live once in
+  App.css (.form-card, .inputDiv, label, .two-col, .fields-group,
+  .form-divider) instead of being copy-pasted (and drifting) in
+  every component's own stylesheet.
 
-.inputDiv{
-    display: flex;
-    gap: 5px;
-}
+  This file only keeps what is genuinely specific to the
+  Work Experience section. (There's currently nothing left to add
+  here - it's kept so the existing
+  `import '../styles/experience.css'` doesn't need to change.)
 
-label{
-    text-transform: uppercase;
-    color: rgb(148, 147, 147);
-    font-weight: 500;
-}
-
-/* after submiting */
-.experience{
-    margin-top: 20px;
-}
-
-.company-positio,
-.dates {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    flex: 1;
-}
+  Note: the old version of this file had
+  ".company-positio, .dates { display:flex; ... }" - a typo
+  ("positio" instead of "position") meant that rule never matched
+  the `.company-position` div in Experience.jsx at all, so Company
+  Name / Position Title were stacking vertically instead of side
+  by side. That's fixed by using the shared `.two-col` class now.
+*/

@@ -18,8 +18,8 @@ function App() {
           <h3> STEP-BY-STEP</h3>
           <h1>Build your résumé</h1>
           <div className='description'>
-          <p>Fill in each section below, then submit it to lock the details in. </p>
-          <p>Every section can be edited again later on its own.</p>
+            <p>Fill in each section below, then submit it to lock the details in. </p>
+            <p>Every section can be edited again later on its own.</p>
           </div>
         </div>
         <PrivateDetails onSave={setDetails} />
@@ -30,7 +30,15 @@ function App() {
           <section className="cv-preview">
             <h2>Your CV</h2>
             <p><i>name:</i> {details.name}, <i>email: </i>{details.email}, <i>phone:</i> {details.phone}</p>
-            <p><i>school:</i> {education.schoolName}, <i>major:</i> {education.major}</p>
+            <p>
+              <i>school(s):</i>{' '}
+              {education.map((entry, i) => (
+                <span key={entry.id}>
+                  {entry.schoolName} ({entry.major}, {entry.startDate}-{entry.endDate || 'Present'})
+                  {i < education.length - 1 ? '; ' : ''}
+                </span>
+              ))}
+            </p>
             <p><i>company:</i> {experience.companyName} <i>position:</i> {experience.position}</p>
           </section>
         )}

@@ -1,35 +1,9 @@
-.detailsEdit {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: var(--cards-background);
-    width: 50%;
-    border-radius: 0.3cm;
-}
+/*
+  Shared card/input/label/two-column styles now live once in
+  App.css (.form-card, .inputDiv, label, .two-col, .fields-group,
+  .form-divider) instead of being copy-pasted (and drifting) in
+  every component's own stylesheet.
 
-.inputDiv {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    flex: 1;
-}
-
-label {
-    text-transform: uppercase;
-    color: rgb(148, 147, 147);
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-.mail-phone {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    flex: 1;
-}
-
-input {
-    width: 100%;
-}
+  This file only keeps what is genuinely specific to the
+  Private Details section.
+*/

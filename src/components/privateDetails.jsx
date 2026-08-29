@@ -18,7 +18,7 @@ function PrivateDetails({ onSave }) {
 
   if (!isEditing) {
     return (
-      <div className="detailsSubmit">
+      <div className="detailsSubmit form-card">
         <h2>Your details</h2>
         <p><strong>{details.name}</strong></p>
         <p>{details.email}</p>
@@ -29,7 +29,7 @@ function PrivateDetails({ onSave }) {
   }
 
   return (
-    <form className="detailsEdit" onSubmit={handleSubmit}>
+    <form className="detailsEdit form-card" onSubmit={handleSubmit}>
       <div className='heading'>
         <span className='number'>1</span>
         <div className='headers'>
@@ -44,7 +44,7 @@ function PrivateDetails({ onSave }) {
           placeholder='John Doe' />
       </div>
 
-      <div className='mail-phone'>
+      <div className='two-col'>
         <div className='inputDiv'>
           <label>Email*</label>
           <input required type="email" name="email" value={details.email} onChange={handleChange}
@@ -57,6 +57,8 @@ function PrivateDetails({ onSave }) {
             placeholder='05X-XXXXXXX' />
         </div>
       </div>
+
+      <hr className="form-divider" />
 
       <button type="submit">&#10003; Submit section</button>
     </form>
