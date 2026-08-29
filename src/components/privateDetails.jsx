@@ -18,12 +18,24 @@ function PrivateDetails({ onSave }) {
 
   if (!isEditing) {
     return (
-      <div className="detailsSubmit form-card">
-        <h2>Your details</h2>
-        <p><strong>{details.name}</strong></p>
-        <p>{details.email}</p>
-        <p>{details.phone}</p>
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+      <div className="detailsEdit form-card">
+        <div className='heading'>
+          <span className='number'>1</span>
+          <div className='headers'>
+            <h2>General information</h2>
+          </div>
+          <button className='edit-btn' onClick={() => setIsEditing(true)}>
+            &#9998; Edit
+          </button>
+        </div>
+
+        <div className='details-summary'>
+          <h3 className='detailsName'>{details.name}</h3>
+          <div className='two-col contact-row'>
+            <p>&#9993; {details.email}</p>
+            <p>&#9742; {details.phone}</p>
+          </div>
+        </div>
       </div>
     );
   }

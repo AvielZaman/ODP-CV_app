@@ -10,37 +10,38 @@ function App() {
   const [education, setEducation] = useState(null);
   const [experience, setExperience] = useState(null);
 
+  const allSubmitted = Boolean(details && education && experience);
+
   return (
     <>
-      <Header />
+      <Header submitted={allSubmitted} />
       <main className='container'>
         <div className='prolog'>
-          <h3> STEP-BY-STEP</h3>
-          <h1>Build your résumé</h1>
-          <div className='description'>
-            <p>Fill in each section below, then submit it to lock the details in. </p>
-            <p>Every section can be edited again later on its own.</p>
-          </div>
+          {allSubmitted ? (
+            <>
+              <h3>REVIEW</h3>
+              <h1>Your résumé sections</h1>
+              <div className='description'>
+                <p>Everything below has been submitted. Click Edit on any section to bring back its form and make changes.</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <h3>STEP-BY-STEP</h3>
+              <h1>Build your résumé</h1>
+              <div className='description'>
+                <p>Fill in each section below, then submit it to lock the details in. </p>
+                <p>Every section can be edited again later on its own.</p>
+              </div>
+            </>
+          )}
         </div>
         <PrivateDetails onSave={setDetails} />
         <Education onSave={setEducation} />
         <Experience onSave={setExperience} />
 
-        {details && education && experience && (
-          <section className="cv-preview">
-            <h2>Your CV</h2>
-            <p><i>name:</i> {details.name}, <i>email: </i>{details.email}, <i>phone:</i> {details.phone}</p>
-            <p>
-              <i>school(s):</i>{' '}
-              {education.map((entry, i) => (
-                <span key={entry.id}>
-                  {entry.schoolName} ({entry.major}, {entry.startDate}-{entry.endDate || 'Present'})
-                  {i < education.length - 1 ? '; ' : ''}
-                </span>
-              ))}
-            </p>
-            <p><i>company:</i> {experience.companyName} <i>position:</i> {experience.position}</p>
-          </section>
+        {allSubmitted && (
+          <button className='finish'>Finish editing</button>
         )}
       </main>
     </>

@@ -16,3 +16,41 @@
   Name / Position Title were stacking vertically instead of side
   by side. That's fixed by using the shared `.two-col` class now.
 */
+
+.experience-summary {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.entry-summary {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.companyName {
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 25px;
+color: black;
+margin: 0;
+}
+
+.positionLine {
+margin: 0;
+color: var(--text-muted);
+font-size: 16px;
+}
+
+.name-date {
+font-size: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.name-date p {
+margin: 0;
+line-height: 0.2;
+}

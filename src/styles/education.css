@@ -5,7 +5,43 @@
   every component's own stylesheet.
 
   This file only keeps what is genuinely specific to the
-  Education section. (There's currently nothing left to add here -
-  it's kept so the existing `import '../styles/education.css'`
-  doesn't need to change.)
+  Education section.
 */
+
+.education-summary {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.entry-summary {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.schoolName {
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 25px;
+color: black;
+margin: 0;
+}
+
+.degreeLine {
+margin: 0;
+color: var(--text-muted);
+font-size: 16px;
+}
+
+.name-date {
+font-size: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.name-date p {
+margin: 0;
+line-height: 0.2;
+}

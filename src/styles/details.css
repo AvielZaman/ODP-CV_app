@@ -7,3 +7,25 @@
   This file only keeps what is genuinely specific to the
   Private Details section.
 */
+
+.details-summary {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.detailsName {
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 25px;
+color: black;
+margin: 0;
+}
+
+.contact-row {
+font-size: 20px;
+}
+
+.contact-row p {
+margin: 0;
+}

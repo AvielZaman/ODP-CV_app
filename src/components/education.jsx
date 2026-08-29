@@ -12,10 +12,13 @@ function emptyEntry() {
   };
 }
 
+function formatDate(isoDate) {
+  if (!isoDate) return '';
+  const [year, month, day] = isoDate.split('-');
+  return `${day}/${month}/${year}`;
+}
+
 function Education({ onSave }) {
-  // Now a LIST of entries instead of one object, so "Add another
-  // school" can add a second/third/etc. entry, each with its own
-  // independent fields.
   const [entries, setEntries] = useState([emptyEntry()]);
   const [isEditing, setIsEditing] = useState(true);
 
@@ -42,16 +45,28 @@ function Education({ onSave }) {
 
   if (!isEditing) {
     return (
-      <div className='education form-card'>
-        <h2> Your education</h2>
-        {entries.map((entry) => (
-          <div key={entry.id}>
-            <p> {entry.schoolName}</p>
-            <p> {entry.degree}{entry.degree && entry.major ? ', ' : ''}{entry.major}</p>
-            <p> {entry.startDate} - {entry.endDate || 'Present'}</p>
+      <div className='educationEdit form-card'>
+        <div className='heading'>
+          <span className='number'>2</span>
+          <div className='headers'>
+            <h2> Education</h2>
           </div>
-        ))}
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button className='edit-btn' onClick={() => setIsEditing(true)}>
+            &#9998; Edit
+          </button>
+        </div>
+
+        <div className='education-summary'>
+          {entries.map((entry) => (
+            <div className='entry-summary' key={entry.id}>
+              <div className='name-date'>
+                <h3 className='schoolName'>{entry.schoolName}</h3>
+                <p>{formatDate(entry.startDate)} - {entry.endDate ? formatDate(entry.endDate) : 'Present'}</p>
+              </div>
+              <p className='degreeLine'>{entry.degree} · {entry.major}</p>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
