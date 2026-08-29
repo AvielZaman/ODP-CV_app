@@ -33,34 +33,46 @@ function Experience({ onSave }) {
 
     return (
         <form className="experienceEdit" onSubmit={handleSubmit}>
-            <legend> Enter your practical experience :</legend>
-
-            <div className='inputDiv'>
-                <label> Company name:</label>
-                <input type="text" name="companyName" value={details.companyName} onChange={handleChange} />
+             <div className='heading'>
+                <span className='number'>1</span>
+                <div className='headers'>
+                    <h2> Work Experience</h2>
+                    <p>List your responsibilities for each role</p>
+                </div>
             </div>
 
-            <div className='inputDiv'>
-                <label> Position Title:</label>
-                <input type="text" name="position" value={details.position} onChange={handleChange} />
-            </div>
+            <div className='company-position'>
+                <div className='inputDiv'>
+                    <label> Company name:</label>
+                    <input type="text" name="companyName" value={details.companyName} onChange={handleChange} />
+                </div>
 
+                <div className='inputDiv'>
+                    <label> Position Title:</label>
+                    <input type="text" name="position" value={details.position} onChange={handleChange} />
+                </div>
+            </div>
+            
             <div className='inputDiv'>
                 <label> Main responsibilities:</label>
                 <input type="text" name="respons" value={details.respons} onChange={handleChange} />
             </div>
 
-            <div className='inputDiv'>
-                <label> Start date:</label>
-                <input type="date" name="start" value={details.start} onChange={handleChange} />
+            <div className='dates'>
+                <div className='inputDiv'>
+                    <label> Start of date</label>
+                    <input type="date" name="start" value={details.start} onChange={handleChange}
+                        placeholder='01/01/2026' />
+                </div>
+
+                <div className='inputDiv'>
+                    <label> End of date</label>
+                    <input type="date" name="end" value={details.end} onChange={handleChange}
+                        placeholder='01/01/2026' />
+                </div>
             </div>
 
-            <div className='inputDiv'>
-                <label> End date:</label>
-                <input type="date" name="end" value={details.end} onChange={handleChange} />
-            </div>
-
-            <button type="submit">Submit</button>
+            <button type="submit">&#10003; Submit section</button>
         </form>
     )
 }

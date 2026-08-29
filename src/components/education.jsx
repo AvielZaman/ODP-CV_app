@@ -45,19 +45,35 @@ function Education({ onSave }) {
                     placeholder='Tel Aviv University' />
             </div>
 
-            <div className='inputDiv'>
-                <label> Major</label>
-                <input type="text" name="major" value={details.major} onChange={handleChange}
-                    placeholder='Computer Science' />
+            <div className='degree-field'>
+                <div className='inputDiv'>
+                    <label> Degree</label>
+                    <input type="text" name="degree" value={details.degree} onChange={handleChange}
+                        placeholder='B.Sc.' />
+                </div>
+
+                <div className='inputDiv'>
+                    <label> Field of study</label>
+                    <input type="text" name="major" value={details.major} onChange={handleChange}
+                        placeholder='Computer Science' />
+                </div>
             </div>
 
-            <div className='inputDiv'>
-                <label> Date of study</label>
-                <input type="date" name="date" value={details.date} onChange={handleChange}
-                    placeholder='01/01/2026' />
+            <div className='dates'>
+                <div className='inputDiv'>
+                    <label> Date of study</label>
+                    <input type="date" name="date" value={details.date} onChange={handleChange}
+                        placeholder='01/01/2026' />
+                </div>
+
+                <div className='inputDiv'>
+                    <label> End of study (if finished) </label>
+                    <input type="date" name="date" value={details.date} onChange={handleChange}
+                        placeholder='01/01/2026' />
+                </div>
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit">&#10003; Submit section</button>
         </form>
 
     )

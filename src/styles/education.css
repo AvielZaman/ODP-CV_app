@@ -57,3 +57,11 @@ hr{
 .headers h2 {
     color: black;
 }
+
+.degree-field,
+.dates {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex: 1;
+}

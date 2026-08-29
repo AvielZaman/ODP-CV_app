@@ -1,8 +1,11 @@
 .experienceEdit{
-    display: flex;
+  display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    background-color: var(--cards-background);
+    width: 50%;
+    border-radius: 0.3cm;
 }
 
 .inputDiv{
@@ -19,4 +22,12 @@ label{
 /* after submiting */
 .experience{
     margin-top: 20px;
+}
+
+.company-positio,
+.dates {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex: 1;
 }

@@ -58,7 +58,7 @@ function PrivateDetails({ onSave }) {
         </div>
       </div>
 
-      <button type="submit">Submit section</button>
+      <button type="submit">&#10003; Submit section</button>
     </form>
   );
 }
