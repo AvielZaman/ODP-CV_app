@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useImperativeHandle, forwardRef } from 'react';
+import { translations, formatDayFirst } from '../i18n';
 import '../styles/experience.css';
 
 function emptyEntry() {
@@ -13,15 +14,11 @@ function emptyEntry() {
   };
 }
 
-function formatDate(isoDate) {
-  if (!isoDate) return '';
-  const [year, month, day] = isoDate.split('-');
-  return `${day}/${month}/${year}`;
-}
-
-function Experience({ onSave }) {
+const Experience = forwardRef(function Experience({ onSave, lang = 'en' }, ref) {
   const [entries, setEntries] = useState([emptyEntry()]);
   const [isEditing, setIsEditing] = useState(true);
+  const t = translations[lang];
+  const ex = t.experience;
 
   function handleChange(id, e) {
     const { name, value } = e.target;
@@ -55,16 +52,34 @@ function Experience({ onSave }) {
     onSave?.(entries);
   }
 
+  useImperativeHandle(ref, () => ({
+    fillDummy() {
+      const dummy = translations[lang].dummy.experience;
+      const data = dummy.map((entry) => ({
+        id: crypto.randomUUID?.() ?? Date.now() + Math.random(),
+        ...entry,
+      }));
+      setEntries(data);
+      setIsEditing(false);
+      onSave?.(data);
+    },
+    clear() {
+      setEntries([emptyEntry()]);
+      setIsEditing(true);
+      onSave?.(null);
+    },
+  }));
+
   if (!isEditing) {
     return (
       <div className='experience form-card'>
         <div className='heading'>
           <span className='number'>3</span>
           <div className='headers'>
-            <h2>Work Experience</h2>
+            <h2>{ex.title}</h2>
           </div>
           <button className='edit-btn' onClick={() => setIsEditing(true)}>
-            &#9998; Edit
+            &#9998; {t.editBtn}
           </button>
         </div>
 
@@ -80,11 +95,11 @@ function Experience({ onSave }) {
                 <div className='name-date'>
                   <h3 className='companyName'>{entry.companyName}</h3>
                   <p>
-                    {formatDate(entry.startDate)} -{' '}
-                    {entry.current || !entry.endDate ? 'Present' : formatDate(entry.endDate)}
+                    {formatDayFirst(entry.startDate)} -{' '}
+                    {entry.current || !entry.endDate ? ex.present : formatDayFirst(entry.endDate)}
                   </p>
                 </div>
-                
+
                 <p className='positionLine'>{entry.position}</p>
 
                 <div className='responsibilities'>
@@ -107,8 +122,8 @@ function Experience({ onSave }) {
       <div className='heading'>
         <span className='number'>3</span>
         <div className='headers'>
-          <h2>Work Experience</h2>
-          <p>List your responsibilities for each role</p>
+          <h2>{ex.title}</h2>
+          <p>{ex.subtitle}</p>
         </div>
       </div>
 
@@ -116,16 +131,16 @@ function Experience({ onSave }) {
         <div className='fields-group' key={entry.id}>
           {entries.length > 1 && (
             <div className='entry-row'>
-              <label style={{ margin: 0 }}>Company {index + 1}</label>
+              <label style={{ margin: 0 }}>{ex.companyLabel} {index + 1}</label>
               <button type='button' className='remove-entry-btn' onClick={() => removeEntry(entry.id)}>
-                Remove
+                {ex.remove}
               </button>
             </div>
           )}
 
           <div className='two-col'>
             <div className='inputDiv'>
-              <label>Company name</label>
+              <label>{ex.companyName}</label>
               <input
                 type='text'
                 name='companyName'
@@ -135,7 +150,7 @@ function Experience({ onSave }) {
             </div>
 
             <div className='inputDiv'>
-              <label>Position Title</label>
+              <label>{ex.position}</label>
               <input
                 type='text'
                 name='position'
@@ -146,18 +161,18 @@ function Experience({ onSave }) {
           </div>
 
           <div className='inputDiv'>
-            <label>Main responsibilities</label>
+            <label>{ex.responsibilities}</label>
             <textarea
               name='respons'
               value={entry.respons}
               onChange={(e) => handleChange(entry.id, e)}
-              placeholder='Built and maintained React components for core product features...'
+              placeholder={ex.responsibilitiesPh}
             />
           </div>
 
           <div className='two-col'>
             <div className='inputDiv'>
-              <label>Start date</label>
+              <label>{ex.startDate}</label>
               <input
                 type='date'
                 name='startDate'
@@ -167,7 +182,7 @@ function Experience({ onSave }) {
             </div>
 
             <div className='inputDiv'>
-              <label>End date</label>
+              <label>{ex.endDate}</label>
               <input
                 type='date'
                 name='endDate'
@@ -182,7 +197,7 @@ function Experience({ onSave }) {
                   checked={entry.current}
                   onChange={(e) => handleCurrentToggle(entry.id, e)}
                 />
-                I currently work here
+                {ex.currentlyWork}
               </label>
             </div>
           </div>
@@ -190,14 +205,14 @@ function Experience({ onSave }) {
       ))}
 
       <button type='button' className='add-entry-btn' onClick={addEntry}>
-        + Add another company
+        {ex.addAnother}
       </button>
 
       <hr className='form-divider' />
 
-      <button type='submit'>&#10003; Submit section</button>
+      <button type='submit'>&#10003; {t.submitSection}</button>
     </form>
   );
-}
+});
 
 export default Experience;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;600;700&family=Public+Sans:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap');
 
 :root {
 --app-background-color: #EFEDE6;
@@ -11,6 +11,14 @@
 --font-body: 'Public Sans', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
 --text-color: #1E1D1B;
 --text-muted: #9A968C;
+}
+
+/* Source Serif 4 / Public Sans don't cover Hebrew glyphs, so the
+   Hebrew résumé (and Hebrew UI) switch to Rubik, which supports both
+   Hebrew and Latin and keeps a similar warm, modern feel. */
+[dir="rtl"] {
+--font-heading: 'Rubik', 'Segoe UI', Tahoma, sans-serif;
+--font-body: 'Rubik', 'Segoe UI', Tahoma, Arial, sans-serif;
 }
 
 * {
@@ -271,7 +279,11 @@ color: var(--btn-color);
 }
 
 .edit-btn {
-margin-left: auto;
+/* Logical (not physical) property on purpose: in a right-to-left
+   (Hebrew) layout "start" flips to the right, so this still pushes
+   the button to the trailing edge of the row instead of always
+   sticking to the physical left. */
+margin-inline-start: auto;
 align-self: center;
 width: auto;
 background: white;
@@ -291,4 +303,41 @@ background-color: var(--background-color);
 .education,
 .experience {
 margin-top: 20px;
+}
+
+.finish-btn{
+   align-self: center;
+}
+
+/* ============================================================
+   Dev tools row (Fill test data / Clear all) - small utility
+   buttons shown above the form while building the résumé, to
+   speed up manual testing of the flow.
+   ============================================================ */
+
+.dev-tools {
+display: flex;
+gap: 10px;
+align-self: flex-end;
+width: 50%;
+justify-content: flex-end;
+margin-bottom: -30px;
+}
+
+.dev-btn {
+width: auto;
+align-self: auto;
+padding: 6px 14px;
+font-size: 13px;
+background-color: var(--cards-background);
+color: var(--btn-color);
+border: 1px solid var(--border-color);
+}
+
+.dev-btn:hover {
+background-color: var(--background-color);
+}
+
+.dev-btn--clear {
+color: #B3452C;
 }

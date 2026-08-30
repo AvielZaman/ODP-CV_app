@@ -1,0 +1,167 @@
+.preview-wrap {
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+justify-content: center;
+gap: 24px;
+width: 100%;
+}
+
+.preview-side {
+display: flex;
+flex-direction: column;
+margin-top: 56px;
+}
+
+.preview-download-btn {
+width: auto;
+white-space: nowrap;
+}
+
+.resume-page {
+background-color: var(--cards-background);
+width: 50%;
+max-width: 700px;
+padding: 56px 64px;
+border-radius: 0.3cm;
+box-shadow: 0 8px 30px rgba(30, 29, 27, 0.1);
+display: flex;
+flex-direction: column;
+gap: 28px;
+}
+
+.resume-header {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.resume-name {
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 34px;
+color: black;
+margin: 0;
+}
+
+.resume-contact {
+font-size: 16px;
+color: var(--text-muted);
+}
+
+.resume-hr {
+width: 100%;
+border: none;
+height: 1px;
+background-color: var(--border-color);
+margin: 0;
+}
+
+.resume-section {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.resume-section-label {
+display: flex;
+align-items: center;
+gap: 16px;
+}
+
+.resume-section-label span:first-child {
+font-family: var(--font-body);
+font-weight: 700;
+font-size: 13px;
+letter-spacing: 1.5px;
+color: var(--btn-color);
+white-space: nowrap;
+}
+
+.resume-section-line {
+flex: 1;
+height: 1px;
+background-color: var(--border-color);
+}
+
+.resume-entry {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.resume-entry-head {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 16px;
+}
+
+.resume-entry-head h3 {
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 18px;
+color: black;
+margin: 0;
+}
+
+.resume-entry-sub {
+margin: 2px 0 0;
+color: var(--text-muted);
+font-size: 15px;
+}
+
+.resume-entry-dates {
+white-space: nowrap;
+font-size: 14px;
+color: var(--text-muted);
+margin: 0;
+}
+
+.resume-bullets {
+margin: 0;
+padding-inline-start: 20px;
+color: var(--text-color);
+font-size: 15px;
+line-height: 1.7;
+}
+
+.resume-bullets li {
+margin-bottom: 2px;
+}
+
+/* ============================================================
+   Print / "Download PDF" output.
+   ------------------------------------------------------------
+   The download button just calls window.print() and lets the
+   browser's own "Save as PDF" destination produce the file. That
+   keeps the résumé as real, selectable text (not a rasterised
+   screenshot), which is what applicant-tracking-system parsers
+   need to read it correctly - a single column, no floating boxes
+   or background images, plain semantic headings/lists.
+   ============================================================ */
+@media print {
+.preview-side,
+.head,
+.dev-tools {
+display: none;
+}
+
+body,
+.container {
+background: white;
+padding: 0;
+}
+
+.resume-page {
+box-shadow: none;
+width: 100%;
+max-width: none;
+padding: 0;
+}
+
+@page {
+size: A4;
+margin: 18mm;
+}
+}

@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useState, useImperativeHandle, forwardRef } from 'react';
+import { translations } from '../i18n';
 import '../styles/details.css';
 
-function PrivateDetails({ onSave }) {
-  const [details, setDetails] = useState({ name: '', email: '', phone: '' });
+function emptyDetails() {
+  return { name: '', email: '', phone: '' };
+}
+
+const PrivateDetails = forwardRef(function PrivateDetails({ onSave, lang = 'en' }, ref) {
+  const [details, setDetails] = useState(emptyDetails());
   const [isEditing, setIsEditing] = useState(true);
+  const t = translations[lang];
+  const d = t.details;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -16,16 +23,30 @@ function PrivateDetails({ onSave }) {
     onSave?.(details);
   }
 
+  useImperativeHandle(ref, () => ({
+    fillDummy() {
+      const data = translations[lang].dummy.details;
+      setDetails(data);
+      setIsEditing(false);
+      onSave?.(data);
+    },
+    clear() {
+      setDetails(emptyDetails());
+      setIsEditing(true);
+      onSave?.(null);
+    },
+  }));
+
   if (!isEditing) {
     return (
       <div className="detailsEdit form-card">
         <div className='heading'>
           <span className='number'>1</span>
           <div className='headers'>
-            <h2>General information</h2>
+            <h2>{d.title}</h2>
           </div>
           <button className='edit-btn' onClick={() => setIsEditing(true)}>
-            &#9998; Edit
+            &#9998; {t.editBtn}
           </button>
         </div>
 
@@ -45,36 +66,36 @@ function PrivateDetails({ onSave }) {
       <div className='heading'>
         <span className='number'>1</span>
         <div className='headers'>
-          <h2> General information</h2>
-          <p>How employers can reach you</p>
+          <h2>{d.title}</h2>
+          <p>{d.subtitle}</p>
         </div>
       </div>
 
       <div className='inputDiv'>
-        <label>Full Name*</label>
+        <label>{d.fullName}</label>
         <input required type="text" name="name" value={details.name} onChange={handleChange}
-          placeholder='John Doe' />
+          placeholder={d.fullNamePh} />
       </div>
 
       <div className='two-col'>
         <div className='inputDiv'>
-          <label>Email*</label>
+          <label>{d.email}</label>
           <input required type="email" name="email" value={details.email} onChange={handleChange}
-            placeholder='example@gmail.com' />
+            placeholder={d.emailPh} />
         </div>
 
         <div className='inputDiv'>
-          <label>Phone*</label>
+          <label>{d.phone}</label>
           <input required type="tel" name="phone" value={details.phone} onChange={handleChange}
-            placeholder='05X-XXXXXXX' />
+            placeholder={d.phonePh} />
         </div>
       </div>
 
       <hr className="form-divider" />
 
-      <button type="submit">&#10003; Submit section</button>
+      <button type="submit">&#10003; {t.submitSection}</button>
     </form>
   );
-}
+});
 
 export default PrivateDetails;

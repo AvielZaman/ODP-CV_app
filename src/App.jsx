@@ -1,50 +1,108 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 import PrivateDetails from './components/privateDetails'
 import Education from './components/education'
 import Experience from './components/experience'
 import Header from './components/header'
+import Preview from './components/preview'
+import LangSelect from './components/langSelect'
+import { translations } from './i18n'
 
 function App() {
+  const [language, setLanguage] = useState(null);
   const [details, setDetails] = useState(null);
   const [education, setEducation] = useState(null);
   const [experience, setExperience] = useState(null);
+  const [isFinished, setIsFinished] = useState(false);
+
+  const detailsRef = useRef(null);
+  const educationRef = useRef(null);
+  const experienceRef = useRef(null);
 
   const allSubmitted = Boolean(details && education && experience);
 
-  return (
-    <>
-      <Header submitted={allSubmitted} />
-      <main className='container'>
-        <div className='prolog'>
-          {allSubmitted ? (
-            <>
-              <h3>REVIEW</h3>
-              <h1>Your résumé sections</h1>
-              <div className='description'>
-                <p>Everything below has been submitted. Click Edit on any section to bring back its form and make changes.</p>
-              </div>
-            </>
-          ) : (
-            <>
-              <h3>STEP-BY-STEP</h3>
-              <h1>Build your résumé</h1>
-              <div className='description'>
-                <p>Fill in each section below, then submit it to lock the details in. </p>
-                <p>Every section can be edited again later on its own.</p>
-              </div>
-            </>
-          )}
-        </div>
-        <PrivateDetails onSave={setDetails} />
-        <Education onSave={setEducation} />
-        <Experience onSave={setExperience} />
+  if (!language) {
+    return <LangSelect onSelect={setLanguage} />;
+  }
 
-        {allSubmitted && (
-          <button className='finish'>Finish editing</button>
-        )}
-      </main>
-    </>
+  const t = translations[language];
+
+  function fillDummyData() {
+    detailsRef.current?.fillDummy();
+    educationRef.current?.fillDummy();
+    experienceRef.current?.fillDummy();
+  }
+
+  function clearAll() {
+    detailsRef.current?.clear();
+    educationRef.current?.clear();
+    experienceRef.current?.clear();
+    setIsFinished(false);
+  }
+
+  return (
+    <div dir={t.dir} lang={language}>
+      {isFinished ? (
+        <>
+          <Header submitted={allSubmitted} lang={language} onEdit={() => setIsFinished(false)} />
+          <main className='container'>
+            <Preview
+              details={details}
+              education={education}
+              experience={experience}
+              lang={language}
+              onEdit={() => setIsFinished(false)}
+            />
+          </main>
+        </>
+      ) : (
+        <>
+          <Header
+            submitted={allSubmitted}
+            lang={language}
+            onSwitchLanguage={() => setLanguage(null)}
+          />
+          <main className='container'>
+            <div className='dev-tools'>
+              <button type='button' className='dev-btn' onClick={fillDummyData}>
+                &#9889; {t.fillTestData}
+              </button>
+              <button type='button' className='dev-btn dev-btn--clear' onClick={clearAll}>
+                &#128465; {t.clearAll}
+              </button>
+            </div>
+
+            <div className='prolog'>
+              {allSubmitted ? (
+                <>
+                  <h3>{t.prologReviewLabel}</h3>
+                  <h1>{t.prologReviewTitle}</h1>
+                  <div className='description'>
+                    <p>{t.prologReviewDesc}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h3>{t.prologStepLabel}</h3>
+                  <h1>{t.prologStepTitle}</h1>
+                  <div className='description'>
+                    <p>{t.prologStepDesc1}</p>
+                    <p>{t.prologStepDesc2}</p>
+                  </div>
+                </>
+              )}
+            </div>
+            <PrivateDetails ref={detailsRef} onSave={setDetails} lang={language} />
+            <Education ref={educationRef} onSave={setEducation} lang={language} />
+            <Experience ref={experienceRef} onSave={setExperience} lang={language} />
+
+            {allSubmitted && (
+              <button className='finish-btn' onClick={() => setIsFinished(true)}>{t.finishBtn}</button>
+            )}
+          </main>
+        </>
+      )}
+    </div>
   );
 }
 

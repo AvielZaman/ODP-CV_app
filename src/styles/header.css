@@ -5,6 +5,7 @@
 header {
 display: flex;
 justify-content: space-between;
+align-items: center;
 padding: 5px 20px 5px 20px;
 }
 
@@ -24,6 +25,36 @@ color: black;
 width: 26px;
 height: 26px;
 object-fit: contain;
+}
+
+.headerRight {
+display: flex;
+align-items: center;
+gap: 16px;
+}
+
+.header-edit-btn {
+margin-left: 0;
+padding: 8px 18px;
+font-size: 15px;
+}
+
+.lang-switch-btn {
+width: auto;
+align-self: auto;
+background: none;
+border: none;
+color: var(--text-muted);
+font-size: 14px;
+font-weight: 600;
+padding: 0;
+cursor: pointer;
+}
+
+.lang-switch-btn:hover {
+background: none;
+color: var(--btn-color);
+text-decoration: underline;
 }
 
 .statusRow {
